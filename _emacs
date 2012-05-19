@@ -1,3 +1,35 @@
+;; auto-install.el
+(add-to-list 'load-path "~/.emacs.d/auto-install/")
+(require 'auto-install)
+(auto-install-update-emacswiki-package-name t)
+(auto-install-compatibility-setup)
+(setq ediff-window-setup-function 'ediff-set-window-plain)
+
+(require 'open-junk-file)
+(global-set-key (kbd "C-x C-z") 'open-junk-file)
+
+(require 'lispxmp)
+(define-key emacs-lisp-mode-map (kbd "C-c C-d") 'lispxmp)
+
+(require 'paredit)
+(add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
+(add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
+(add-hook 'lisp-mode-hook 'enable-paredit-mode)
+(add-hook 'ielm-mode-hook 'enable-paredit-mode)
+
+(require 'auto-async-byte-compile)
+(setq auto-async-byte-compile-exclude-files-regexp "/junk/")
+(add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
+(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
+(add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
+(add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
+(setq eldoc-idle-delay 0.2)
+(setq eldoc-minor-mode-string "")
+
+(global-set-key "\C-m" 'newline-and-indent)
+
+(find-function-setup-keys)
+
 (defun my-c-mode-hook ()
   ;; add my personal style and set it for the current buffer 
   (c-set-style "gnu") 
@@ -69,6 +101,9 @@
 (setq default-major-mode 'text-mode)
 ;;(add-hook 'text-mode-hook 'turn-on-auto-fill)
 
+;; php mode
+(require 'php-mode)
+
 ;; For file recognition
 (setq-default transient-mark-mode t)
 (setq auto-mode-alist (cons '("\\.C$" . c++-mode) auto-mode-alist))
@@ -87,6 +122,7 @@
 (setq auto-mode-alist (cons '("\\.lex$" . c-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.l$" . c-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.pl$" . perl-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.php$" . php-mode) auto-mode-alist))
 
 ;; Make control PgUp/PgDn scroll the other buffer
 (global-set-key [C-next] 'scroll-other-window)
@@ -210,6 +246,7 @@
 
 ;; Diary.
 (setq diary-file "~/diary")
+
 ;; Modified by pAnk7.yArdbird. Enable color support of ls for shell-mode.
 (defun my-shell-mode-hook ()
   (load-library "ansi-color")
