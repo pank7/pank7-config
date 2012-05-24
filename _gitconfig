@@ -1,10 +1,12 @@
 [user]
 	name = pank7
 	email = liyi84@gmail.com
+[github]
+	user = pank7
 [color]
-    ui = auto
+	ui = auto
 [alias]
 	st = status
 	co = checkout
-    br = branch
-    ci = commit
+	br = branch
+	ci = commit
