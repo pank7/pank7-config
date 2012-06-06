@@ -30,6 +30,13 @@
 
 (find-function-setup-keys)
 
+;;; other plugins
+;;; magit
+(add-to-list 'load-path "~/.emacs.d/site-lisp/")
+(require 'magit)
+(require 'magit-svn)
+
+;;; my c mode
 (defun my-c-mode-hook ()
   ;; add my personal style and set it for the current buffer 
   (c-set-style "gnu") 
@@ -53,6 +60,9 @@
   (which-func-mode)
   ) 
 
+(add-hook 'c-mode-hook 'my-c-mode-hook) 
+
+;;; my linux c mode
 (defun my-linux-c-mode ()
   "C mode with adjusted defaults for use with the Linux kernel."
   (interactive)
@@ -65,8 +75,7 @@
 (setq auto-mode-alist (cons '("/usr/src/linux.*/.*\\.[ch]$" . my-linux-c-mode)
 			    auto-mode-alist))
 
-(add-hook 'c-mode-hook 'my-c-mode-hook) 
-
+;;; my c++ mode
 (defun my-c++-mode-hook ()
   ;; add my personal style and set it for the current buffer 
   (c-set-style "stroustrup") 
@@ -97,12 +106,12 @@
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 
+;; php mode
+(require 'php-mode)
+
 ;; For default major mode
 (setq default-major-mode 'text-mode)
 ;;(add-hook 'text-mode-hook 'turn-on-auto-fill)
-
-;; php mode
-(require 'php-mode)
 
 ;; For file recognition
 (setq-default transient-mark-mode t)
@@ -143,10 +152,9 @@
 (global-set-key [S-f3] 'bookmark-set)
 (global-set-key [S-f4] 'bookmark-jump)
 (global-set-key [S-f5] 'gdb)
-;;(global-set-key [f18] 'next-error)
 (global-set-key [S-f6] 'ispell-buffer)
 (global-set-key [S-f7] 'eshell)
-(global-set-key [S-f8] 'insert-diary-entry)
+(global-set-key [S-f8] 'magit-status)
 
 ;; Rebind Ctrl-z to start a new shell
 (global-set-key "\C-z" 'eshell)
@@ -311,4 +319,5 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "#00ff00" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 160 :width normal :foundry "apple" :family "Courier_New")))))
+ '(default
+    ((t (:inherit nil :stipple nil :background "black" :foreground "#00ff00" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 160 :width normal :foundry "apple" :family "Courier_New")))))
