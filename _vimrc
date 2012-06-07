@@ -27,9 +27,6 @@ else
   set backup		" keep a backup file
 endif
 set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
@@ -102,4 +99,22 @@ set expandtab
 set background=dark
 set number
 set nobackup
+set autoindent
+set ruler
+set showcmd
+set showmode
+set incsearch
+set ignorecase
+set smartcase
+set wildmenu
+set wildmode=list:longest
+set modeline
+" set foldmethod=indent
+set grepprg=internal
+" set list
+set hlsearch
 syntax on
+
+set cmdheight=1
+set laststatus=2
+set statusline=%F%m%r\ \|\ %Y,%{&fileencoding}\ \|%=\ %l/%L,%c\ \|\ %f

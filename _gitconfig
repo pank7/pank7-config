@@ -1,12 +1,17 @@
 [user]
-	name = pank7
-	email = liyi84@gmail.com
+    name = pank7
+    email = liyi84@gmail.com
 [github]
-	user = pank7
+    user = pank7
 [color]
-	ui = auto
+    ui = auto
 [alias]
-	st = status
-	co = checkout
-	br = branch
-	ci = commit
+    st = status
+    co = checkout
+    br = branch
+    ci = commit
+[i18n]
+    commitEncoding = utf-8
+    logOutputEncoding = utf-8
+[merge]
+    tool = vimdiff

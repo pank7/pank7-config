@@ -1,3 +1,4 @@
+
 ;; auto-install.el
 (add-to-list 'load-path "~/.emacs.d/auto-install/")
 (require 'auto-install)
@@ -35,6 +36,11 @@
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
 (require 'magit)
 (require 'magit-svn)
+(setq magit-repo-dirs nil)
+
+;;; tramp
+(require 'tramp)
+(setq tramp-default-method "scp")
 
 ;;; my c mode
 (defun my-c-mode-hook ()
