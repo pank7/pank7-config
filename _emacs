@@ -1,8 +1,8 @@
-
-;; auto-install.el
+;;; auto-install.el
 (add-to-list 'load-path "~/.emacs.d/auto-install/")
 (require 'auto-install)
-(auto-install-update-emacswiki-package-name t)
+;; (setq auto-install-directory "~/.emacs.d/auto-install/")
+;; (auto-install-update-emacswiki-package-name t)
 (auto-install-compatibility-setup)
 (setq ediff-window-setup-function 'ediff-set-window-plain)
 
@@ -204,14 +204,14 @@
 ;; Compile command
 (setq compile-command "make -j8")
 
-;; Language environment
-(set-language-environment 'Chinese-GB)
-(set-buffer-file-coding-system 'cn-gb-2312)
-(set-keyboard-coding-system 'cn-gb-2312)
-(set-terminal-coding-system 'cn-gb-2312)
-(setq-default enable-multibyte-charecters t)
-(prefer-coding-system 'cn-gb-2312)
-(set-selection-coding-system 'cn-gb-2312)
+;;; Language environment
+;;(set-language-environment 'Chinese-GB)
+;;(set-buffer-file-coding-system 'cn-gb-2312)
+;;(set-keyboard-coding-system 'cn-gb-2312)
+;;(set-terminal-coding-system 'cn-gb-2312)
+;;(setq-default enable-multibyte-charecters t)
+;;(prefer-coding-system 'cn-gb-2312)
+;;(set-selection-coding-system 'cn-gb-2312)
 
 ;; Sth about time displaying
 (setq display-time-24hr-format t)
