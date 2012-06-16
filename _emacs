@@ -302,6 +302,7 @@
 
 ;; color theme
 (require 'color-theme)
+(color-theme-initialize)
 ;;(color-theme-classic)
 ;;(color-theme-lawrence)
 (color-theme-euphoria)
