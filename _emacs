@@ -107,8 +107,16 @@
 
 (add-hook 'c++-mode-hook 'my-c++-mode-hook)
 
-;; python
+;;; python
 (autoload 'python-mode "python-mode" "Python Mode." t)
+;; remember to install Pymacs to python
+(require 'pymacs)
+;; remember to install pycomplete to python
+(require 'pycomplete)
+(defun my-python-mode-hook ()
+  (define-key python-mode-map "\M- " 'py-complete)
+  )
+(add-hook 'python-mode-hook 'my-python-mode-hook)
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 
