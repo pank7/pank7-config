@@ -10,3 +10,6 @@
 [submodule "helm"]
 	path = helm
 	url = https://github.com/emacs-helm/helm.git
+[submodule "phpplus-mode"]
+	path = phpplus-mode
+	url = https://github.com/echosa/phpplus-mode.git
