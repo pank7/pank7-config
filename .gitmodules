@@ -7,3 +7,6 @@
 [submodule "Pymacs"]
 	path = Pymacs
 	url = https://github.com/pinard/Pymacs.git
+[submodule "helm"]
+	path = helm
+	url = https://github.com/emacs-helm/helm.git

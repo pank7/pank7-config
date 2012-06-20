@@ -31,6 +31,11 @@
 
 (find-function-setup-keys)
 
+;;; helm
+(add-to-list 'load-path "~/.emacs.d/helm/")
+(require 'helm-config)
+(global-set-key (kbd "C-c h") 'helm-mini)
+
 ;;; other plugins
 ;;; magit
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
