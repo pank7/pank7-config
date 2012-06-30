@@ -13,3 +13,6 @@
 [submodule "phpplus-mode"]
 	path = phpplus-mode
 	url = https://github.com/echosa/phpplus-mode.git
+[submodule "org-mode"]
+	path = org-mode
+	url = git://orgmode.org/org-mode.git
