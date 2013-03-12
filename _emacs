@@ -35,6 +35,10 @@
 (add-to-list 'load-path "~/.emacs.d/helm/")
 (require 'helm-config)
 (global-set-key (kbd "C-c h") 'helm-mini)
+(helm-mode 1)
+
+;;; org-mode
+(require 'org-install)
 
 ;;; other plugins
 ;;; magit
@@ -118,7 +122,9 @@
 (require 'pymacs)
 ;; remember to install pycomplete to python
 (require 'pycomplete)
+(setq py-shell-name "/usr/local/bin/ipython")
 (defun my-python-mode-hook ()
+  (setq py-force-py-shell-name-p t)
   (define-key python-mode-map "\M- " 'py-complete)
   )
 (add-hook 'python-mode-hook 'my-python-mode-hook)
@@ -126,9 +132,17 @@
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 
 ;;; php mode
-;;(require 'php-mode)
+(add-to-list 'load-path "~/.emacs.d/phpplus-mode/")
+;; (require 'php-mode)
 (require 'php+-mode)
 (php+-mode-setup)
+(setq auto-mode-alist (cons '("\\.php$" . php+-mode) auto-mode-alist))
+
+;;; erlang
+(add-to-list 'load-path "~/.emacs.d/erlang/")
+(setq erlang-root-dir "~/src/erlang/otp")
+(setq exec-path (cons "~/src/erlang/otp/bin" exec-path))
+(require 'erlang-start)
 
 ;; For default major mode
 (setq default-major-mode 'text-mode)
@@ -152,7 +166,8 @@
 (setq auto-mode-alist (cons '("\\.lex$" . c-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.l$" . c-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.pl$" . perl-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.php$" . php-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.erl$" . erlang-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.hrl$" . erlang-mode) auto-mode-alist))
 
 ;; Make control PgUp/PgDn scroll the other buffer
 (global-set-key [C-next] 'scroll-other-window)
@@ -174,7 +189,7 @@
 (global-set-key [S-f4] 'bookmark-jump)
 (global-set-key [S-f5] 'gdb)
 (global-set-key [S-f6] 'ispell-buffer)
-(global-set-key [S-f7] 'eshell)
+(global-set-key [S-f7] 'helm-mini)
 (global-set-key [S-f8] 'magit-status)
 
 ;; Rebind Ctrl-z to start a new shell
@@ -220,13 +235,13 @@
 (setq compile-command "make -j8")
 
 ;;; Language environment
-;;(set-language-environment 'Chinese-GB)
-;;(set-buffer-file-coding-system 'cn-gb-2312)
-;;(set-keyboard-coding-system 'cn-gb-2312)
-;;(set-terminal-coding-system 'cn-gb-2312)
-;;(setq-default enable-multibyte-charecters t)
-;;(prefer-coding-system 'cn-gb-2312)
-;;(set-selection-coding-system 'cn-gb-2312)
+;; (set-language-environment 'Chinese-GB)
+;; (set-buffer-file-coding-system 'cn-gb-2312)
+;; (set-keyboard-coding-system 'cn-gb-2312)
+;; (set-terminal-coding-system 'cn-gb-2312)
+;; (setq-default enable-multibyte-charecters t)
+;; (prefer-coding-system 'cn-gb-2312)
+;; (set-selection-coding-system 'cn-gb-2312)
 
 ;; Sth about time displaying
 (setq display-time-24hr-format t)
@@ -318,9 +333,11 @@
 ;; color theme
 (require 'color-theme)
 (color-theme-initialize)
+;;(color-theme-gnome2)
 ;;(color-theme-classic)
 ;;(color-theme-lawrence)
 (color-theme-euphoria)
+;;(color-theme-bharadwaj-slate)
 ;;(color-theme-oswald)
 ;;(color-theme-dark-laptop)
 ;;(color-theme-matrix)
@@ -335,11 +352,12 @@
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(display-time-mode t)
+ '(safe-local-variable-values (quote ((encoding . utf-8))))
  '(show-paren-mode t))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default
-    ((t (:inherit nil :stipple nil :background "black" :foreground "#00ff00" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 160 :width normal :foundry "apple" :family "Courier_New")))))
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "#00ff00" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 160 :width normal :foundry "apple" :family "Courier_New")))))
