@@ -118,3 +118,4 @@ syntax on
 set cmdheight=1
 set laststatus=2
 set statusline=%F%m%r\ \|\ %Y,%{&fileencoding}\ \|%=\ %l/%L,%c\ \|\ %f
+set cursorline
