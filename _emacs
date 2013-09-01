@@ -1,3 +1,5 @@
+;;; site-lisp
+(add-to-list 'load-path "~/.emacs.d/site-lisp/")
 ;;; auto-install.el
 (add-to-list 'load-path "~/.emacs.d/auto-install/")
 (require 'auto-install)
@@ -13,10 +15,11 @@
 (define-key emacs-lisp-mode-map (kbd "C-c C-d") 'lispxmp)
 
 (require 'paredit)
-(add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
-(add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
-(add-hook 'lisp-mode-hook 'enable-paredit-mode)
-(add-hook 'ielm-mode-hook 'enable-paredit-mode)
+(require 'init-paredit)
+;;(require 'paredit-extension)
+
+;;; scheme
+(setq scheme-program-name "petite")
 
 (require 'auto-async-byte-compile)
 (setq auto-async-byte-compile-exclude-files-regexp "/junk/")
@@ -42,7 +45,7 @@
 
 ;;; other plugins
 ;;; magit
-(add-to-list 'load-path "~/.emacs.d/site-lisp/")
+(add-to-list 'load-path "~/.emacs.d/magit/")
 (require 'magit)
 (require 'magit-svn)
 (setq magit-repo-dirs nil)
@@ -122,7 +125,7 @@
 (require 'pymacs)
 ;; remember to install pycomplete to python
 (require 'pycomplete)
-(setq py-shell-name "/usr/local/bin/ipython")
+(setq py-shell-name "/usr/bin/python")
 (defun my-python-mode-hook ()
   (setq py-force-py-shell-name-p t)
   (define-key python-mode-map "\M- " 'py-complete)
@@ -140,9 +143,14 @@
 
 ;;; erlang
 (add-to-list 'load-path "~/.emacs.d/erlang/")
-(setq erlang-root-dir "~/src/erlang/otp")
-(setq exec-path (cons "~/src/erlang/otp/bin" exec-path))
+(setq erlang-root-dir "/usr/local/lib/erlang")
+(setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
 (require 'erlang-start)
+
+;;; haskell
+(add-to-list 'load-path "~/.emacs.d/haskell")
+(require 'haskell-mode-autoloads)
+(add-to-list 'Info-default-directory-list "~/emacs.d/haskell/")
 
 ;; For default major mode
 (setq default-major-mode 'text-mode)
@@ -236,12 +244,12 @@
 
 ;;; Language environment
 ;; (set-language-environment 'Chinese-GB)
-;; (set-buffer-file-coding-system 'cn-gb-2312)
-;; (set-keyboard-coding-system 'cn-gb-2312)
-;; (set-terminal-coding-system 'cn-gb-2312)
-;; (setq-default enable-multibyte-charecters t)
-;; (prefer-coding-system 'cn-gb-2312)
-;; (set-selection-coding-system 'cn-gb-2312)
+(set-buffer-file-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(setq-default enable-multibyte-charecters t)
+(prefer-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
 
 ;; Sth about time displaying
 (setq display-time-24hr-format t)
@@ -275,9 +283,9 @@
 
 ;; My diary.
 (setq chinese-calendar-celestial-stem
-      ["¼×" "ÒÒ" "±û" "¶¡" "Îì" "¼º" "¸ı" "ĞÁ" "ÈÉ" "¹ï"])
+      ["ç”²" "ä¹™" "ä¸™" "ä¸" "æˆŠ" "å·±" "åºš" "è¾›" "å£¬" "ç™¸"])
 (setq chinese-calendar-terrestrial-branch
-      ["×Ó" "³ó" "Òú" "Ã®" "³½" "ËÈ" "Îç" "Î´" "Éê" "ÓÏ" "Ğç" "º¥"])
+      ["å­" "ä¸‘" "å¯…" "å¯" "è¾°" "å·³" "åˆ" "æœª" "ç”³" "é…‰" "æˆŒ" "äº¥"])
 
 ;; Extract compressed files
 (auto-compression-mode 1)
