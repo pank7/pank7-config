@@ -15,7 +15,16 @@
 (define-key emacs-lisp-mode-map (kbd "C-c C-d") 'lispxmp)
 
 (require 'paredit)
-(require 'init-paredit)
+(dolist (hook (list
+               'haskell-mode-hook
+               'emacs-lisp-mode-hook
+               'lisp-interaction-mode-hook
+               'lisp-mode-hook
+               'maxima-mode-hook
+               'ielm-mode-hook
+               'scheme-mode-hook
+               ))
+  (add-hook hook '(lambda () (paredit-mode 1))))
 ;;(require 'paredit-extension)
 
 ;;; scheme
@@ -42,6 +51,10 @@
 
 ;;; org-mode
 (require 'org-install)
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
 
 ;;; other plugins
 ;;; magit
@@ -151,6 +164,7 @@
 (add-to-list 'load-path "~/.emacs.d/haskell")
 (require 'haskell-mode-autoloads)
 (add-to-list 'Info-default-directory-list "~/emacs.d/haskell/")
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 
 ;; For default major mode
 (setq default-major-mode 'text-mode)
@@ -368,4 +382,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "#00ff00" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 160 :width normal :foundry "apple" :family "Courier_New")))))
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "#00ff00" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "apple" :family "Courier_New")))))

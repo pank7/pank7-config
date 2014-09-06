@@ -10,8 +10,13 @@
     co = checkout
     br = branch
     ci = commit
+    ln = log --name-only
+    lp = log -p
+    ls = log --stat --summary --graph --pretty
 [i18n]
     commitEncoding = utf-8
     logOutputEncoding = utf-8
 [merge]
     tool = vimdiff
+[core]
+    editor = vim
